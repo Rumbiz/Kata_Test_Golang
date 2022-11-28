@@ -108,7 +108,7 @@ func main() {
 				RomanNumUsed = true
 			}
 			for _, letter := range Expression {
-				if !strings.Contains("012345689IiXxVvLlCcMm", string(letter)) {
+				if !strings.Contains("012345689IiXxVvLlCcMm+-*/", string(letter)) {
 					panic("В вводе обнаружены символы помимо римских или арабских цифр!")
 				}
 			}
@@ -144,7 +144,8 @@ func main() {
 								case "*":
 									result = result1 * result2
 								case "/":
-									result = result1 / result2
+								
+									result = int(result1 / result2)
 
 								}
 								fmt.Print(result)
