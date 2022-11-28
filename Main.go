@@ -107,12 +107,17 @@ func main() {
 			if strings.ContainsAny(Expression, "IVX") {
 				RomanNumUsed = true
 			}
+			for _, letter := range Expression {
+				if !strings.Contains("012345689IiXxVvLlCcMm", string(letter)) {
+					panic("В вводе обнаружены символы помимо римских или арабских цифр!")
+				}
+			}
 			if RomanNumUsed && ArabicNumUsed {
 				err := fmt.Errorf("Арабские и римские цифры перемешаны!")
 				fmt.Print(err)
 			} else {
 				if !(RomanNumUsed || ArabicNumUsed) {
-					err := fmt.Errorf("Использованы символы помимо цифр, либо слишком большие римские числа!")
+					err := fmt.Errorf("В вводе не найдено ни римских, ни арабских цифр!")
 					fmt.Print(err)
 				} else {
 					res := strings.Split(Expression, ExpectedOperator)
