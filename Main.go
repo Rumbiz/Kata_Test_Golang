@@ -87,7 +87,7 @@ func main() {
 	}
 	if !(strings.ContainsAny(Expression, "+-*/")) {
 		err := fmt.Errorf("В строке нет операторов!")
-		fmt.Print(err)
+		fmt.Println(err)
 	} else {
 		for Key := range Operators {
 			var CurrentOperatorCounter int = strings.Count(Expression, Operators[Key])
@@ -98,7 +98,7 @@ func main() {
 		}
 		if OperatorsCounter != 1 {
 			err := fmt.Errorf("More than 1 operator!")
-			fmt.Print(err)
+			fmt.Println(err)
 		} else {
 			//У нас в строке один оператор, и он нам известен (Лежит в переменной ExpectedOperator). Проверим виды вводимых чисел- арабские\римские, исключим смешивание.
 			if strings.ContainsAny(Expression, "0123456789") {
@@ -114,16 +114,16 @@ func main() {
 			}
 			if RomanNumUsed && ArabicNumUsed {
 				err := fmt.Errorf("Арабские и римские цифры перемешаны!")
-				fmt.Print(err)
+				fmt.Println(err)
 			} else {
 				if !(RomanNumUsed || ArabicNumUsed) {
 					err := fmt.Errorf("В вводе не найдено ни римских, ни арабских цифр!")
-					fmt.Print(err)
+					fmt.Println(err)
 				} else {
 					res := strings.Split(Expression, ExpectedOperator)
 					if res[1] == "" || res[0] == "" {
 						err := fmt.Errorf("Оператор в начале или конце строки! Нет второго числа.")
-						fmt.Print(err)
+						fmt.Println(err)
 					} else {
 
 						if ArabicNumUsed {
@@ -131,7 +131,7 @@ func main() {
 							result2, err := strconv.Atoi(res[1])
 							if !(result1 <= 10 && result2 <= 10) {
 								err := "Использованы числа выше 10!"
-								fmt.Print(err)
+								fmt.Println(err)
 							} else {
 								if err != nil {
 									panic(err)
@@ -144,18 +144,18 @@ func main() {
 								case "*":
 									result = result1 * result2
 								case "/":
-								
+
 									result = int(result1 / result2)
 
 								}
-								fmt.Print(result)
+								fmt.Println(result)
 							}
 						} else {
 							result1 := romanToInt(res[0])
 							result2 := romanToInt(res[1])
 							if result1 > 10 || result2 > 10 {
 								err := fmt.Errorf("Использованы числа выше 10!")
-								fmt.Print(err)
+								fmt.Println(err)
 							} else {
 								switch ExpectedOperator {
 								case "+":
@@ -165,7 +165,7 @@ func main() {
 										result = result1 - result2
 									} else {
 										err := fmt.Errorf("Римские числа не могут быть отрицательными!")
-										fmt.Print(err)
+										fmt.Println(err)
 									}
 								case "*":
 									result = result1 * result2
@@ -175,7 +175,7 @@ func main() {
 									}
 								}
 								RomanResult := ArabicToRoman(result)
-								fmt.Print(RomanResult)
+								fmt.Println(RomanResult)
 							}
 						}
 
