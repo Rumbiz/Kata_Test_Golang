@@ -21,7 +21,7 @@ func romanToInt(s string) int {
 	//TODO: ошибка при некорректно сформулированных римских цифрах (IIIIIIIIX или XLX)
 	Total := 0
 	MaxOrder := 0
-	for i := len(s) - 1; i >= 0; i-- {
+	for i := len(s) - 2; i >= 0; i-- {
 		letter := s[i]
 
 		num := RomanNumerals[rune(letter)]
